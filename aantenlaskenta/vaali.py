@@ -19,7 +19,7 @@ def nollaa_summat(ehdokkaat: list[Ehdokas]):
 def laske_äänikynnys(
     hyväksytyt_äänet: int, äänihukka: float, paikkamäärä: int
 ) -> float:
-    return ceil_5dec((hyväksytyt_äänet - äänihukka) / paikkamäärä)
+    return ceil_5dec((hyväksytyt_äänet - äänihukka) / (paikkamäärä + 1) + 1)
 
 
 def päivitä_painokertoimet(ehdokkaat: list[Ehdokas], äänikynnys: float):
