@@ -2,6 +2,57 @@ from aantenlaskenta.lipuke import Lipuke
 from aantenlaskenta.ehdokas import Ehdokas
 from aantenlaskenta.vaalilogger import vaalilogger
 
+import csv
+
+
+def luo_opavote(vaalitiedosto: str) -> str:
+    """
+    Ottaa parametrina csv vaalitiedoston tiedostonimen.
+    Luo uuden vaalitiedoston OpaVote formaatilla.
+    Palauttaa luodun tiedoston nimen.
+
+    ```
+    if tiedostotyyppi != "y":
+        vaalitiedosto = luo_opavote(vaalitiedosto)
+    ```
+    """
+    
+    print("Anna vaalin nimi:")
+    vaalin_nimi = input("> ")
+    print("Anna valittavien paikkojen määrä:")
+    paikkamäärä = input("> ")
+    lipukkeet = []
+    ehdokkaat = set()
+    with open(vaalitiedosto, "r") as f:
+        csvFile = csv.reader(f)
+        for line in csvFile:
+            lipukkeet.append(line)
+            ehdokkaat.update(line)
+    ehdokkaat.remove("")
+    printti = f"{len(ehdokkaat)} {paikkamäärä}\n"
+    for i,ehdokas in enumerate(ehdokkaat):
+        for j in range(len(lipukkeet)):
+            for k in range(len(lipukkeet[j])):
+                if lipukkeet[j][k] == ehdokas:
+                    lipukkeet[j][k] = i+1
+    for j in range(len(lipukkeet)):
+        printti += "1 "
+        for k in range(len(lipukkeet[j])):
+            if lipukkeet[j][k] != "":
+                printti += f"{str(lipukkeet[j][k])} "
+        printti += "0\n"
+    printti += "0\n"
+    for i,ehdokas in enumerate(ehdokkaat):
+        printti += f'"{ehdokas}"\n'
+    printti += f'"{vaalin_nimi}"'
+    print("Anna uuden vaalitiedoston nimi:")
+    opavote_tiedosto = input("> ")
+    f = open(opavote_tiedosto, "w")
+    f.write(printti)
+    f.close()
+    return opavote_tiedosto
+    
+
 
 def lue_lipukkeet(syöte: list[str]) -> tuple[str, int, list[Ehdokas], list[Lipuke], int]:
     """

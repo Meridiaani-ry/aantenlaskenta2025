@@ -19,7 +19,7 @@ def nollaa_summat(ehdokkaat: list[Ehdokas]):
 def laske_äänikynnys(
     hyväksytyt_äänet: int, äänihukka: float, paikkamäärä: int
 ) -> float:
-    return ceil_5dec((hyväksytyt_äänet - äänihukka) / (paikkamäärä + 1) + 1)
+    return ceil_5dec((hyväksytyt_äänet - äänihukka) / (paikkamäärä+1) + 1)
 
 
 def päivitä_painokertoimet(ehdokkaat: list[Ehdokas], äänikynnys: float):
@@ -125,8 +125,8 @@ def suorita_vaali(paikkamäärä: int, ehdokkaat: list[Ehdokas], lipukkeet: list
         vaalilogger.lisää_rivi("\nTilanne kierroksen lopussa:")
         vaalilogger.nykytilanne(ehdokkaat)
         kierros_nro += 1
-    
-    vaalilogger.lisää_rivi(f'\n{("="*80 + "\n")*2}')
+    bs_n="\n"
+    vaalilogger.lisää_rivi(f"\n{('='*80 + bs_n)*2}")
     vaalilogger.lisää_rivi("\nValitaan ehdokkaat: \n")
     for ehdokas in etsi_ehdokkaat_tilassa(ehdokkaat, Tila.Valittu):
         vaalilogger.lisää_rivi(f"\t{ehdokas}")

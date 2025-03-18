@@ -6,8 +6,34 @@ import secrets
 
 
 def arvo_pudotettava(pienimmät: list[Ehdokas]) -> Ehdokas:
-    valittu = secrets.choice(pienimmät)
-    return valittu
+    print("Jos arvonta halutaan suorittaa secrets-kirjaston choice funtiolla, syötä 'y', muuten paina enter ja arvonta suoritetaan manuaalisesti:")
+    metodi = input("> ")
+    if metodi == "y":
+        vaalilogger.lisää_rivi("")
+        vaalilogger.lisää_rivi("Arvontaan käytetään secrets-kirjastoa")
+        valittu = [secrets.choice(pienimmät)]
+    else:
+        vaalilogger.lisää_rivi("")
+        vaalilogger.lisää_rivi("Arvonta suoritetaan manuaalisesti")
+
+        for ehdokas in pienimmät:
+            print(f"[{ehdokas._id}]: {ehdokas.nimi}")
+        print("\nSyötä pois arvotun ehdokkaan id (nimeä edeltävä numero).")
+        print("Esimerkiksi: 2\n")
+
+
+        syöte = input("> ")
+        try:
+            id = int(syöte)
+        except ValueError:
+            raise VaaliException("Kirjoita syöte oikeassa muodossa!")
+
+        valittu = list(filter(lambda ehdokas: ehdokas._id == id, pienimmät))
+
+        if len(valittu) == 0:
+            raise VaaliException(f"Ehdokasta numero {id} ei löytynyt!")
+        
+    return valittu[0]
 
 
 def etsi_pienimmät(toiveikkaat: list[Ehdokas], pudotusvertailu=False) -> list[Ehdokas]:

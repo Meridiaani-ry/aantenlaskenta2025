@@ -1,4 +1,4 @@
-from aantenlaskenta.opavote import lue_lipukkeet
+from aantenlaskenta.opavote import lue_lipukkeet, luo_opavote
 from aantenlaskenta.ehdokas import Ehdokas, Tila
 from aantenlaskenta.lipuke import Lipuke
 from aantenlaskenta.vaali import suorita_vaali
@@ -65,11 +65,18 @@ def lue_vaalitiedosto(tiedosto: str) -> Tuple[str, int, list[Ehdokas], list[Lipu
 def aloita():
     # vaalitiedoston nimen voi syöttää parametrina
     # esim. python aantenlaskenta/main.py testivaali.txt
+    print("Onko käytössä OpaVote-tiedosto? Syötä 'y' jos on, muuten paina enteriä ja ohjelma olettaa itse täytettyä csv:")
+    tiedostotyyppi = input("> ")
+    
     if len(sys.argv) > 1:
         vaalitiedosto = sys.argv[1]
     else:
         print("Syötä vaalitiedoston nimi:")
         vaalitiedosto = input("> ")
+    
+    if tiedostotyyppi != "y":
+        vaalitiedosto = luo_opavote(vaalitiedosto)
+        
 
     vaalin_nimi, paikkamäärä, ehdokkaat, lipukkeet, hylätyt_äänet = lue_vaalitiedosto(
         vaalitiedosto

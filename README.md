@@ -1,10 +1,11 @@
-## TKO-äly ry:n ääntenlaskuohjelma
+## Meridiaani ry:n ääntenlaskuohjelma
 
-Linkki ääni- ja vaalijärjestykseen: https://www.tko-aly.fi/yhdistys/vaalijarjestys
+Linkki ääni- ja vaalijärjestykseen: !!!LISÄÄ!!!
+Tämä ohjelma on muokattu versio TKO-äly ry:n tekemästä ääntenlaskuohjelmasta (forkattu MIT lisenssillä 20.2.2025) 
 
 ## Ohjelman suoritus
 
-Varmista, että koneellasi on tarpeeksi uusi versio Pythonista (vähintään 3.10).
+Varmista, että koneellasi on tarpeeksi uusi versio Pythonista (vähintään 3.10). 
 
 Asenna ohjelma koneellesi esimerkiksi 
 
@@ -60,8 +61,11 @@ kunhan tarvittavat työkalut on asennettu jotain muuta kautta.
 
 ## Opavote
 
-Äänestykseen käytetään Opavote-palvelua, 
-josta äänestyksen loputtua saa ladattua äänet ja ehdokkaan sisältävän tiedoston. Tiedosto voi näyttää esimerkiksi tältä:
+Äänestykseen käytetään Opavote-palvelua tai csv-tiedostoa. 
+Opavote-palvelusta äänestyksen loputtua saa ladattua äänet ja ehdokkaan sisältävän tiedoston.
+Jos Opavoten sijaan käytetään csv-tiedostoa, luo ohjelma uuden vaalitiedoston Opavote-formaatissa.
+
+Tiedosto voi näyttää esimerkiksi tältä:
 
 ```
 4 2
@@ -106,6 +110,8 @@ Viimeisellä rivillä on vielä vaalin nimi. Esimerkissä "Joku vaali"
 ...
 "[vaalin nimi]"
 ```
+
+Csv-tiedostoa käytettäessä tulee yhteen lipukkeeseen täytettyjen ehdokkaiden nimet kirjoittaa omalle rivilleen. Ohjelma ei vastaa nimien oikeinkirjoituksesta tai siitä, ovatko kaikki lipukkeisiin kirjoitetut nimet ehdolla.
 
 ## TODO
 
