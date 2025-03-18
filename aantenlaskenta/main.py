@@ -68,11 +68,15 @@ def aloita():
     print("Onko käytössä OpaVote-tiedosto? Syötä 'y' jos on, muuten paina enteriä ja ohjelma olettaa itse täytettyä csv:")
     tiedostotyyppi = input("> ")
     
-    if len(sys.argv) > 1:
+    vaalitiedosto = ""
+    if len(sys.argv) > 1 and os.path.isfile(sys.argv[1]):
         vaalitiedosto = sys.argv[1]
     else:
-        print("Syötä vaalitiedoston nimi:")
-        vaalitiedosto = input("> ")
+        while not os.path.isfile(vaalitiedosto):
+            print("Syötä vaalitiedoston nimi:")
+            vaalitiedosto = input("> ")
+            if not os.path.isfile(vaalitiedosto):
+                print(f"Annettu polku '{vaalitiedosto}' ei ole tiedosto.")
     
     if tiedostotyyppi != "y":
         vaalitiedosto = luo_opavote(vaalitiedosto)
