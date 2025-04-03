@@ -1,6 +1,7 @@
 ## Meridiaani ry:n ääntenlaskuohjelma
 
-Linkki ääni- ja vaalijärjestykseen: !!!LISÄÄ!!!
+[Linkki ääni- ja vaalijärjestykseen](https://drive.google.com/file/d/1GZpCkh9KpXxjuEfBgmRUXrb6Ec0EReyB/view?usp=sharing)
+
 Tämä ohjelma on muokattu versio TKO-äly ry:n tekemästä ääntenlaskuohjelmasta (forkattu MIT lisenssillä 20.2.2025) 
 
 ## Ohjelman suoritus
